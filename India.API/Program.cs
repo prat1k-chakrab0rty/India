@@ -1,3 +1,6 @@
+using India.API.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace India.API
 {
     public class Program
@@ -8,6 +11,9 @@ namespace India.API
 
             // Add services to the container.
             builder.Services.AddControllers();
+
+            builder.Services.AddDbContext<IndiaDBContext>(options =>
+            options.UseSqlServer(builder.Configuration.GetConnectionString("AppDB")));
 
             // Add Swagger services
             builder.Services.AddEndpointsApiExplorer();
